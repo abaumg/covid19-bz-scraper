@@ -35,7 +35,7 @@ tot = zeilen[7]
 
 with open('data/covid19_bz.csv', mode='w') as datei:
     # CSV-Parameter setzen
-    writer = csv.writer(datei, delimiter=';', quoting=csv.QUOTE_ALL)
+    writer = csv.writer(datei, delimiter=',', quoting=csv.QUOTE_ALL)
     writer.writerow(['datum','positiv_gesamt','positiv_delta','positiv_aktuell_gesamt','positiv_aktuell_delta','geheilt_gesamt','geheilt_delta','tot_gesamt','tot_delta'])
     
     # Tage durchloopen
