@@ -1,6 +1,28 @@
+#!/usr/bin/env python
+""" Script to pull municipal data for positive tested COVID-19 cases for province of South Tyrol from excel file
+    and write/append to csv
+    Usage:
+        %(scriptName)s [URL]
+    Parameters:
+        URL (str): URL to xls sheet containing municipal covid-19 data for South Tyrol
+                e.g. http://www.provinz.bz.it/news/de/news.asp?news_action=300&news_image_id=1062388
+    Output:
+        creates new .csv file for specific day and appends data to (existing) .csv file containing previous days
+"""
+
+import sys
 import pandas as pd
 import datetime
-import sys
+
+# display help to console  if command line argument not provided
+if len(sys.argv) < 2:
+    print(__doc__ % {'scriptName' : sys.argv[0].split("/")[-1]})
+    sys.exit(0)
+
+
+#####################
+# define output folder
+outdir = r'data/'
 
 ## filename for csv file containing all dates
 alldatesmunicST_csv = 'covid19_bz_municipalities.csv'
@@ -50,7 +72,7 @@ df_totale = df_totale[['datum', 'ISTAT_code', 'name_IT', 'totals']]
 
 
 # write to csv file
-df_totale.to_csv(singledatemunicST_csv, sep=',', header=True, index=False)
+df_totale.to_csv(outdir+singledatemunicST_csv, sep=',', header=True, index=False)
 
 ## append to csv file containing all dates
-df_totale.to_csv(alldatesmunicST_csv, sep=',', mode = 'a', header=False, index=False)
+df_totale.to_csv(outdir+alldatesmunicST_csv, sep=',', mode = 'a', header=False, index=False)
