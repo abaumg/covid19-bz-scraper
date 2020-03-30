@@ -13,6 +13,7 @@
 import sys
 import pandas as pd
 import datetime
+import os.path
 
 # display help to console  if command line argument not provided
 if len(sys.argv) < 2:
@@ -52,7 +53,7 @@ df_totale.iloc[:,1] = df_totale.iloc[:,1].map(lambda x: x.rstrip(' Totale').uppe
 # extract date from xls file
 filedate = df.columns[2].strip('Totali al ')
 # convert to datetime object
-date = datetime.datetime.strptime(filedate, '%d-%m-%Y').strftime('%Y_%m_%d')
+date = datetime.datetime.strptime(filedate, '%d-%m-%Y').strftime('%Y-%m-%d')
 
 # add date column
 df_totale['datum'] = date
@@ -75,4 +76,11 @@ df_totale = df_totale[['datum', 'ISTAT_code', 'name_IT', 'totals']]
 df_totale.to_csv(outdir+singledatemunicST_csv, sep=',', header=True, index=False)
 
 ## append to csv file containing all dates
-df_totale.to_csv(outdir+alldatesmunicST_csv, sep=',', mode = 'a', header=False, index=False)
+# check if file already exists, if true skip header, else write header
+if os.path.exists(outdir+alldatesmunicST_csv):
+    df_totale.to_csv(outdir + alldatesmunicST_csv, sep=',', mode='a', header=False, index=False)
+else:
+    df_totale.to_csv(outdir + alldatesmunicST_csv, sep=',', mode='a', header=True, index=False)
+
+
+
