@@ -18,7 +18,7 @@ import datetime
 import os.path
 
 # display help to console  if command line argument not provided
-if len(sys.argv) > 1 and (sys.argv[1] == '-h' or '--help'):
+if len(sys.argv) > 1 and sys.argv[1] in ['-h', '--help']:
     print(__doc__ % {'scriptName' : sys.argv[0].split("/")[-1]})
     sys.exit(0)
 
@@ -52,7 +52,7 @@ df_totale = df[df['Comune di residenza'].str.contains('Total')]
 df_totale.iloc[:, 0] = df_totale.iloc[:, 0].astype('int32')
 
 # remove 'totale' from municipality name
-df_totale.iloc[:,1] = df_totale.iloc[:,1].map(lambda x: x.rstrip(' Totale').upper())
+df_totale.iloc[:, 1] = df_totale.iloc[:,1].map(lambda x: x.rstrip(' Totale').upper())
 
 # extract date from xls file
 filedate = df.columns[2].strip('Totali al ')
