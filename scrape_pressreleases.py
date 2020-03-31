@@ -231,3 +231,13 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     filename = 'data/covid19_bz_detailed.csv'
     header = False if os.path.exists(filename) else True
     df.to_csv(filename, sep=',', mode='a', header=header, index=True)
+
+
+if __name__ == '__main__':
+    try:
+        date, url = get_pressrelease_url()
+    except TypeError:
+        print('No press release for today was found')
+        quit()
+
+    get_numbers_from_pressrelease(url, date)
