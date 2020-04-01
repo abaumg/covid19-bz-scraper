@@ -22,4 +22,4 @@ Script to parse detailed covid-19 data from official press releases and write/ap
 ### Parameters:
     None
 ### Output:
-creates new `data/covid19_bz_detailed_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_detailed_YYYY-MM-DD.csv` file containing previous days
+creates new `data/covid19_bz_detailed_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_detailed.csv` file containing previous days
