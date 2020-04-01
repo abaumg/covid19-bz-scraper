@@ -29,7 +29,7 @@ def get_pressrelease_url():
         pubdate_hour = item.published_parsed.tm_hour
         # Press releases are always published around 10am
         today = date.today().isoformat()
-        pubdate = '{}-{:0>2d}-{}'.format(item.published_parsed.tm_year, item.published_parsed.tm_mon, item.published_parsed.tm_mday)
+        pubdate = '{}-{:0>2d}-{:0>2d}'.format(item.published_parsed.tm_year, item.published_parsed.tm_mon, item.published_parsed.tm_mday)
 
         # if item was published today between 8am and 1pm, it could be a press release
         if 8 < pubdate_hour < 13 and pubdate == today:
@@ -39,7 +39,7 @@ def get_pressrelease_url():
             ).lower()
 
             # Search for common used words
-            words = ['daten', 'gesamtzahl', 'zahlen', 'anzahl', 'aktualisiert', 'aktuell']
+            words = ['daten', 'gesamtzahl', 'zahlen', 'anzahl', 'aktualisiert', 'aktuell', 'abstriche', 'geheilte']
             if any(x in text_to_search for x in words):
                 # Potential hit! Fetch the content to be sure
                 request = requests.get(item.link)
@@ -153,18 +153,18 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'auf normalstationen' in key:
             fieldname = 'hospitalized_normal'
             value = value if 'auf normalstationen' in key else None
-        elif 'intensiv' in key:
+        elif 'intensiv' in key and not 'ausland' in key:
             fieldname = 'hospitalized_icu'
-            value = value if 'intensiv' in key else None
+            value = value if 'intensiv' in key and not 'ausland' in key else None
         elif 'verdachtsf' in key:
             fieldname = 'hospitalized_suspicious'
             value = value if 'verdachtsf' in key else None
         elif 'verstorbene seit' in key:
             fieldname = 'deceased_delta'
             value = value if 'verstorbene seit' in key else None
-        elif 'verstorbene insgesamt' in key:       
+        elif 'verstorbene' in key and 'gesamt' in key:       
             fieldname = 'deceased_total'
-            value = value if 'verstorbene insgesamt' in key else None
+            value = value if 'verstorbene' in key and 'gesamt' in key else None
         elif 'personen betroffen von' in key:        
             fieldname = 'isolated_total'
             value = value if 'personen betroffen von' in key else None
@@ -200,7 +200,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             value = value if 'mitarbeiter in quarantäne' in key else None
         elif 'verstorbene heimbewohner' in key:        
             fieldname = 'deceased_senior_residents'
-            value = value if 'verstorbene heimbewohner' in key else None
+            value = value.split(' ')[0] if 'verstorbene heimbewohner' in key else None
         
         else:
             # Unknown field
