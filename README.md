@@ -1,25 +1,44 @@
 # covid19-bz-scraper
 
+This repository contains a set of scripts to pull/scrape data for COVID-19 cases in South Tyrol from provinz.bz.it pages. This repo exists because the Autonomus Province of South Tyrol is unable to provide the data as Open Data on it's Open Data Portal.
+
+----
+
 ## process_municipalities_singleday.py
 
-Script to pull municipal data for positive tested COVID-19 cases for province of South Tyrol from excel file
+Pull municipal data for positive tested COVID-19 cases for province of South Tyrol from excel file
 and write/append to csv
 
 ### Usage:
-    python process_municipalities_singleday.py [URL]
+python process_municipalities_singleday.py [URL]
 ### Parameters:
 URL (string): URL to xls sheet containing municipal covid-19 data for South Tyrol 
 e.g. http://www.provinz.bz.it/news/de/news.asp?news_action=300&news_image_id=1062388
 ### Output:
-creates new `data/covid19_bz_municipalities_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_municipalities.csv` file containing previous days
+Creates new `data/covid19_bz_municipalities_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_municipalities.csv` file containing previous days
+
+----
 
 ## scrape_pressreleases.py
 
-Script to parse detailed covid-19 data from official press releases and write/append to csv
+Parse detailed covid-19 data from official press releases and write/append to csv
 
 ### Usage:
-    python scrape_pressreleases.py
+python scrape_pressreleases.py
 ### Parameters:
-    None
+None
 ### Output:
-creates new `data/covid19_bz_detailed_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_detailed.csv` file containing previous days
+Creates new `data/covid19_bz_detailed_YYYY-MM-DD.csv` file for specific day and appends data to (existing) `data/covid19_bz_detailed.csv` file containing previous days
+
+----
+
+## scrape_graphics.py
+
+Parse basic covid-19 data from http://www.provinz.bz.it/sicherheit-zivilschutz/zivilschutz/aktuelle-daten-zum-coronavirus.asp.
+
+### Usage:
+python scrape_graphics.py
+### Parameters:
+None
+### Output:
+Appends data to `data/covid19_bz.csv`
