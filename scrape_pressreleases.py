@@ -30,20 +30,19 @@ def get_pressrelease_url():
         # Press releases are always published around 10am
         today = date.today().isoformat()
         pubdate = '{}-{:0>2d}-{:0>2d}'.format(item.published_parsed.tm_year, item.published_parsed.tm_mon, item.published_parsed.tm_mday)
-
         # if item was published today between 8am and 1pm, it could be a press release
-        if 8 < pubdate_hour < 13 and pubdate == today:
+        if 7 < pubdate_hour < 18 and pubdate == today:
             text_to_search = '{} {}'.format(
                 item.title,
                 item.description
             ).lower()
 
             # Search for common used words
-            words = ['daten', 'gesamtzahl', 'zahlen', 'anzahl', 'aktualisiert', 'aktuell', 'abstriche', 'geheilte']
+            words = ['daten', 'gesamtzahl', 'zahlen', 'anzahl', 'aktualisiert', 'aktuell', 'abstriche', 'geheilte', 'corona', 'coronavirus']
             if any(x in text_to_search for x in words):
                 # Potential hit! Fetch the content to be sure
                 request = requests.get(item.link)
-                if 'Zahlen in K' in request.text:
+                if 'Die Zahlen' in request.text:
                     # Bingo!
                     return pubdate, item.link
     return None
@@ -121,7 +120,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         if zik is True:
             p_list.append(p.text)
         else:
-            if 'Zahlen in Kürze' in p.text:
+            if 'Die Zahlen i' in p.text:
                 zik = True
 
     # Loop through <p> and try to scrape known fields
