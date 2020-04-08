@@ -13,9 +13,10 @@
 """
 
 import sys
-import pandas as pd
 import datetime
 import os.path
+import pandas as pd
+pd.options.mode.chained_assignment = None
 
 # display help to console  if command line argument not provided
 if len(sys.argv) > 1 and sys.argv[1] in ['-h', '--help']:
