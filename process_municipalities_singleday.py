@@ -62,19 +62,15 @@ date = datetime.datetime.strptime(filedate, '%d-%m-%Y').strftime('%Y-%m-%d')
 # add date column
 df_totale['datum'] = date
 
-
-## file name generation from current system date derived
-#csv_file = '{date:%Y-%m-%d}_ST_communal_covid19pos.txt'.format(date=datetime.datetime.now())
-##file name derived from column heading
-#csv_file = '{date}_ST_communal_covid19pos.txt'.format(date=df.columns[2].strip('Totali al '))
 # file name with date format YYYY_mm_dd
-singledatemunicST_csv = 'covid19_bz_municipalities_{date}.csv'.format(date=date)
+singledatemunicST_csv = 'covid19_bz_municipalities_{date}.csv'.format(date=date.replace('-', '_'))
 
 # rename columns
 df_totale.columns = ['ISTAT_code', 'name_IT', 'totals', 'datum']
 # re-order columns
 df_totale = df_totale[['datum', 'ISTAT_code', 'name_IT', 'totals']]
-
+# sort by date and istat code
+df_totale = df_totale.sort_values(by=['datum', 'ISTAT_code'])
 
 # write to csv file
 df_totale.to_csv(outdir+singledatemunicST_csv, sep=',', header=True, index=False)
