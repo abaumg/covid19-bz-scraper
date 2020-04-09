@@ -135,75 +135,74 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
 
         if 'gesamtzahl der untersuchten abstriche' in key:
             fieldname = 'swabs_total'
-            value = value if 'gesamtzahl der untersuchten abstriche' in key else None
-        
+            value = value
         elif 'abstriche gestern' in key:
             fieldname = 'swabs_delta'
-            value = value if 'abstriche gestern' in key else None
+            value = value
         elif 'getesteten personen' in key:        
             fieldname = 'tested_total'
-            value = value if 'getesteten personen' in key else None
+            value = value
         elif 'positiv getestete neue' in key:
             fieldname = 'positive_delta'
-            value = value if 'positiv getestete neue' in key else None
+            value = value
         elif 'gesamtzahl' in key and 'infizierte personen' in key:
             fieldname = 'positive_total'
-            value = value if 'gesamtzahl' in key and 'infizierte personen' in key else None
+            value = value
         elif 'auf normalstationen' in key:
             fieldname = 'hospitalized_normal'
-            value = value if 'auf normalstationen' in key else None
+            value = value
         elif 'intensiv' in key and not 'ausland' in key:
             fieldname = 'hospitalized_icu'
-            value = value if 'intensiv' in key and not 'ausland' in key else None
+            value = value 
         elif 'verdachtsf' in key:
             fieldname = 'hospitalized_suspicious'
-            value = value if 'verdachtsf' in key else None
+            value = value
         elif 'verstorbene seit' in key:
             fieldname = 'deceased_delta'
-            value = value if 'verstorbene seit' in key else None
+            value = value
         elif 'verstorbene' in key and 'gesamt' in key:       
             fieldname = 'deceased_total'
-            value = value if 'verstorbene' in key and 'gesamt' in key else None
+            value = value
         elif 'personen betroffen von' in key:        
             fieldname = 'isolated_total'
-            value = value if 'personen betroffen von' in key else None
+            value = value
         elif 'personen in quarantäne' in key:       
             fieldname = 'isolated_current'
-            value = value if 'personen in quarantäne' in key else None
+            value = value
         elif 'isolation beendet' in key:
             fieldname = 'isolated_released'
-            value = value if 'isolation beendet' in key else None
+            value = value
         elif 'geheilte insgesamt' in key:        
             fieldname = 'recovered_total'
-            value = value if 'geheilte insgesamt' in key else None
+            value = value
         elif 'positiv' in key and 'sanitätsbetrieb' in key:        
             fieldname = 'positive_sabes_employees'
-            value = value if 'positiv' in key and 'sanitätsbetrieb' in key else None
+            value = value
         elif 'getestete' in key and 'ärzte' in key:
             fieldname = 'positive_familydoctors'
-            value = value if 'getestete' in key and 'ärzte' in key else None
+            value = value
         elif 'getestete' in key and 'heim' in key:        
             fieldname = 'positive_senior_residents'
-            value = sum([int(s) for s in value.split() if s.isdigit()]) if 'getestete' in key and 'heim' in key else none
+            value = sum([int(s) for s in value.split() if s.isdigit()])
         elif 'getestete' in key and 'mitarbeiter':        
             fieldname = 'positive_senior_employees'
-            value = value if 'getestete' in key and 'mitarbeiter' else None
+            value = value
         elif 'genesene heimbewohner' in key:        
             fieldname = 'recovered_senior_residents'
-            value = value if 'genesene heimbewohner' in key else None
+            value = value
         elif 'isolierte heimbewohner' in key:        
             fieldname = 'isolated_senior_residents'
-            value = value if 'isolierte heimbewohner' in key else None
+            value = value
         elif 'mitarbeiter in quarantäne' in key:        
             fieldname = 'isolated_senior_employees'
-            value = value if 'mitarbeiter in quarantäne' in key else None
+            value = value
         elif 'verstorbene heimbewohner' in key:        
             fieldname = 'deceased_senior_residents'
             value = value.split(' ')[0] if 'verstorbene heimbewohner' in key else None
         
         else:
             # Unknown field
-            pass
+            value = None
 
 
         if fieldname and key and value:
