@@ -221,10 +221,6 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     # create DataFrame    
     df = pd.DataFrame(data=fields, index=[date])
 
-    # write daily CSV
-    filename = 'data/covid19_bz_detailed_{date}.csv'.format(date=date.replace('-', '_'))
-    df.to_csv(filename, sep=',', mode='w', header=True, index=False)
-
     # write total CSV
     filename = 'data/covid19_bz_detailed.csv'
     header = False if os.path.exists(filename) else True
