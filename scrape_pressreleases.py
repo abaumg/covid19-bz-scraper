@@ -54,24 +54,17 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             URL (str):  URL to press release (usually will be obtained by get_pressrelease_url())
             Date (str): optional date (format: YYYY-MM-DD) for which the obtained data will be saved to
         Currently supported fields:
-            deceased_delta              Verstorbene seit gestern bis heute früh
-            deceased_senior_residents   verstorbene Heimbewohner
             deceased_total              Verstorbene insgesamt
             hospitalized_icu            Covid-19 Patientinnen und Patienten in Intensivbetreuung
             hospitalized_normal         Auf Normalstationen und in Gossensaß untergebrachte Covid-19-Patienten/Patientinnen/Personen
             hospitalized_suspicious     Als Verdachtsfälle Aufgenommene
             isolated_current            Personen in Quarantäne/häuslicher Isolation
             isolated_released           Personen, die Quarantäne/häusliche Isolation beendet haben
-            isolated_senior_employees   Mitarbeiter in Quarantäne
-            isolated_senior_residents   isolierte Heimbewohner
             isolated_total              Personen betroffen von verordneter Quarantäne/häuslicher Isolation
             positive_delta              Positiv getestete neue Personen
             positive_familydoctors      Positiv getestete Basis- und Kinderbasisärzte
             positive_sabes_employees    Positiv getestete Mitarbeiter und Mitarbeiterinnen des Sanitätsbetriebes
-            positive_senior_employees   positiv getestete Mitarbeiter
-            positive_senior_residents   positiv getestete Heimbewohner
             positive_total              Gesamtzahl mit neuartigem Coronavirus infizierte Personen
-            recovered_senior_residents  genesene Heimbewohner
             recovered_total             Geheilte insgesamt
             swabs_delta                 Untersuchte Abstriche gestern
             swabs_total                 Gesamtzahl der untersuchten Abstriche
@@ -81,24 +74,17 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     """
 
     fields = {
-        'deceased_delta' : None,
-        'deceased_senior_residents' : None,
         'deceased_total' : None,
         'hospitalized_icu' : None,
         'hospitalized_normal' : None,
         'hospitalized_suspicious' : None,
         'isolated_current' : None,
         'isolated_released' : None,
-        'isolated_senior_employees' : None,
-        'isolated_senior_residents' : None,
         'isolated_total' : None,
         'positive_delta' : None,
         'positive_familydoctors' : None,
         'positive_sabes_employees' : None,
-        'positive_senior_employees' : None,
-        'positive_senior_residents' : None,
         'positive_total' : None,
-        'recovered_senior_residents' : None,
         'recovered_total' : None,
         'swabs_delta' : None,
         'swabs_total' : None,
@@ -157,9 +143,6 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'verdachtsf' in key:
             fieldname = 'hospitalized_suspicious'
             value = value
-        elif 'verstorbene seit' in key:
-            fieldname = 'deceased_delta'
-            value = value
         elif 'verstorbene' in key and 'gesamt' in key:       
             fieldname = 'deceased_total'
             value = value
@@ -181,24 +164,6 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'getestete' in key and 'ärzte' in key:
             fieldname = 'positive_familydoctors'
             value = value
-        elif 'getestete' in key and 'heim' in key:        
-            fieldname = 'positive_senior_residents'
-            value = sum([int(s) for s in value.split() if s.isdigit()])
-        elif 'getestete' in key and 'mitarbeiter':        
-            fieldname = 'positive_senior_employees'
-            value = value
-        elif 'genesene heimbewohner' in key:        
-            fieldname = 'recovered_senior_residents'
-            value = value
-        elif 'isolierte heimbewohner' in key:        
-            fieldname = 'isolated_senior_residents'
-            value = value
-        elif 'mitarbeiter in quarantäne' in key:        
-            fieldname = 'isolated_senior_employees'
-            value = value
-        elif 'verstorbene heimbewohner' in key:        
-            fieldname = 'deceased_senior_residents'
-            value = value.split(' ')[0] if 'verstorbene heimbewohner' in key else None
         
         else:
             # Unknown field
