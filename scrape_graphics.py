@@ -13,15 +13,14 @@ request = requests.get('http://www.provinz.bz.it/sicherheit-zivilschutz/zivilsch
 
 # Antwort lesen und durch Regex schicken
 matches = re.search(
-    r"(columns:\[\s)([\[[\d',\[\] .a-zA-Z\r\n]*]*)]",
+    r"(columns:\[\s)([\[[\d',\[\] .a-zA-Zäöü\r\n]*]*)]",
     request.text
     )
 
+
 # Die eigentlichen Daten stecken in der zweiten Capturegroup
 html = matches.group(2).strip()
-
 zeilen = list(map(bereinigen, html.split('\n')))
-
 # Zuordnung der einzelnen Zeilen
 x1 = zeilen[0]
 x2 = zeilen[1]
