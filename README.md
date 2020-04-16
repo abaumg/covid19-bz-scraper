@@ -2,6 +2,11 @@
 
 This repository contains a set of scripts to pull/scrape data for COVID-19 cases in South Tyrol from provinz.bz.it pages. This repo exists because the Autonomus Province of South Tyrol is unable to provide the data as Open Data on it's Open Data Portal.
 
+The scraped data is provided in the [data/](https://github.com/abaumg/covid19-bz-scraper/tree/master/data) subfolder as well:
+- [covid19_bz.csv](https://github.com/abaumg/covid19-bz-scraper/blob/master/data/covid19_bz.csv): basic data (positive, recovered, deceased)
+- [covid19_bz_detailed.csv](https://github.com/abaumg/covid19-bz-scraper/blob/master/data/covid19_bz_detailed.csv): detailed data (tested, positive, hospitalized, isolated, recovered, deceased)
+- [covid19_bz_municipalities.csv](https://github.com/abaumg/covid19-bz-scraper/blob/master/data/covid19_bz_municipalities.csv) and covid19_bz_municipalities_YYYY_MM_DD.csv: data by municipalities
+
 ----
 
 ## process_municipalities_singleday.py
