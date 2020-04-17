@@ -9,7 +9,7 @@ def bereinigen(input):
     return eval(input)
 
 # HTTP-Request absetzen
-request = requests.get('http://www.provinz.bz.it/sicherheit-zivilschutz/zivilschutz/aktuelle-daten-zum-coronavirus.asp')
+request = requests.get('https://afbs.provinz.bz.it/upload/coronavirus/chartDE.js')
 
 # Antwort lesen und durch Regex schicken
 matches = re.search(
