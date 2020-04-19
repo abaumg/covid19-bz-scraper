@@ -102,7 +102,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     # Find all <p> in main text and loop through them. We want every <p> after "Die Zahlen in Kürze"
     zik = False
     p_list = []
-    for p in artikel.find_all('p'):
+    for p in artikel.find_all('div'):
         if zik is True:
             p_list.append(p.text)
         else:
