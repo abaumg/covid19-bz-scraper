@@ -183,6 +183,8 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
                 }
             )
 
+    fields.update({'pressrelease_url': url})
+
     # create DataFrame    
     df = pd.DataFrame(data=fields, index=[date])
 
