@@ -155,7 +155,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'isolation beendet' in key:
             fieldname = 'isolated_released'
             value = value
-        elif 'geheilte personen' in key and not 'unklares' in value:        
+        elif ('geheilte personen' in key and not 'unklares' in value) or key == 'insgesamt':        
             fieldname = 'recovered_total'
             value = value.split(' ')[0]
         elif 'positiv' in key and 'sanitätsbetrieb' in key:        
