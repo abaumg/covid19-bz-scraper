@@ -160,10 +160,10 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             value = value.split(' ')[0]
         elif 'positiv' in key and 'sanitätsbetrieb' in key:        
             fieldname = 'positive_sabes_employees'
-            value = value
+            value = value.split(' ')[0]
         elif 'getestete' in key and 'ärzte' in key:
             fieldname = 'positive_familydoctors'
-            value = value
+            value = value.split(' ')[0]
         
         else:
             # Unknown field
