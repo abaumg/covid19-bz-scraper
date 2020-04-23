@@ -68,7 +68,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             recovered_total             Geheilte insgesamt
             swabs_delta                 Untersuchte Abstriche gestern
             swabs_total                 Gesamtzahl der untersuchten Abstriche
-            tested_total                Gesamtzahl der getesteten Personen        
+            tested_total                Gesamtzahl der getesteten Personen
         Output:
             None
     """
@@ -88,7 +88,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         'recovered_total' : None,
         'swabs_delta' : None,
         'swabs_total' : None,
-        'tested_total' : None,        
+        'tested_total' : None,
     }
 
     # Get press release HTML code and parse it with BS4
@@ -125,7 +125,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'abstriche gestern' in key:
             fieldname = 'swabs_delta'
             value = value
-        elif 'getesteten personen' in key:        
+        elif 'getesteten personen' in key:
             fieldname = 'tested_total'
             value = value
         elif 'positiv getestete neue' in key:
@@ -143,28 +143,28 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'verdachtsf' in key:
             fieldname = 'hospitalized_suspicious'
             value = value
-        elif 'verstorbene' in key and 'gesamt' in key:       
+        elif 'verstorbene' in key and 'gesamt' in key:
             fieldname = 'deceased_total'
             value = value
-        elif 'personen betroffen von' in key:        
+        elif 'personen betroffen von' in key:
             fieldname = 'isolated_total'
             value = value
-        elif 'personen in quarantäne' in key:       
+        elif 'personen in quarantäne' in key:
             fieldname = 'isolated_current'
             value = value
         elif 'isolation beendet' in key:
             fieldname = 'isolated_released'
             value = value
-        elif ('geheilte personen' in key and not 'unklares' in value) or key == 'insgesamt':        
+        elif ('geheilte personen' in key and not 'unklares' in value) or key == 'insgesamt':
             fieldname = 'recovered_total'
             value = value.split(' ')[0]
-        elif 'positiv' in key and 'sanitätsbetrieb' in key:        
+        elif 'positiv' in key and 'sanitätsbetrieb' in key:
             fieldname = 'positive_sabes_employees'
             value = value.split(' ')[0]
         elif 'getestete' in key and 'ärzte' in key:
             fieldname = 'positive_familydoctors'
             value = value.split(' ')[0]
-        
+
         else:
             # Unknown field
             value = None
@@ -185,7 +185,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
 
     fields.update({'pressrelease_url': url})
 
-    # create DataFrame    
+    # create DataFrame
     df = pd.DataFrame(data=fields, index=[date])
 
     # write total CSV
