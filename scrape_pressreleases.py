@@ -113,7 +113,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     for datapoint in p_list:
         fieldname = None
         try:
-            key, value = datapoint.split(':')
+            key, value = datapoint.split(':', maxsplit=1)
             key = key.lower()
             value = value.strip()
         except ValueError:
@@ -155,9 +155,9 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'isolation beendet' in key:
             fieldname = 'isolated_released'
             value = value
-        elif ('geheilte personen' in key and not 'unklares' in value) or key == 'insgesamt':
+        elif 'geheilte' in key:
             fieldname = 'recovered_total'
-            value = value.split(' ')[0]
+            value = value.split('Insgesamt: ')[1].split(' ')[0]
         elif 'positiv' in key and 'sanitätsbetrieb' in key:
             fieldname = 'positive_sabes_employees'
             value = value.split(' ')[0]
