@@ -116,6 +116,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             key, value = datapoint.split(':', maxsplit=1)
             key = key.lower()
             value = value.strip()
+            value = value.replace('\xa0', ' ')
         except ValueError:
             continue
 
