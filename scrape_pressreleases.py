@@ -6,6 +6,7 @@
 import feedparser
 import os
 import pandas as pd
+import re
 import requests
 
 from bs4 import BeautifulSoup
@@ -158,7 +159,9 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             value = value
         elif 'geheilte' in key:
             fieldname = 'recovered_total'
-            value = value.split('Insgesamt: ')[1].split(' ')[0]
+            matches = re.search(r"Insgesamt: +([0-9]{1,})(.*)", value)
+            value = matches.groups()[0]
+            print(value)
         elif 'positiv' in key and 'sanitätsbetrieb' in key:
             fieldname = 'positive_sabes_employees'
             value = value.split(' ')[0]
