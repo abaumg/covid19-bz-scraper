@@ -1,5 +1,6 @@
 import csv
-import datetime
+from datetime import datetime
+import pandas as pd
 import requests
 import re
 
@@ -7,6 +8,15 @@ def bereinigen(input):
     input = input.replace('null', '0')
     input = input.replace('],', ']')
     return eval(input)
+
+# Checken, ob wir die heutigen Daten schon haben
+today = datetime.today().date()
+df = pd.read_csv('data/covid19_bz.csv')
+last_row = df.tail(1)
+last_scraped_date = datetime.strptime(last_row['datum'].values[0], '%Y-%m-%d').date()
+if not last_scraped_date < today:
+    quit()
+
 
 # HTTP-Request absetzen
 request = requests.get('https://afbs.provinz.bz.it/upload/coronavirus/chartDE.js')
@@ -40,7 +50,7 @@ with open('data/covid19_bz.csv', mode='w') as datei:
     # Tage durchloopen
     for i in range(1, len(x1)):
         datum = '{}.2020'.format(x1[i]) # Jahreszahl ergänzen, da sie im Original fehlt
-        datum = datetime.datetime.strptime(datum, '%d.%m.%Y').date()
+        datum = datetime.strptime(datum, '%d.%m.%Y').date()
 
         # tägliche Gesamtzahlen
         p = positive[i]
