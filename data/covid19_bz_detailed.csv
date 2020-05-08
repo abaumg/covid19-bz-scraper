@@ -1,4 +1,4 @@
-,deceased_total,hospitalized_icu,hospitalized_normal,hospitalized_suspicious,isolated_current,isolated_released,isolated_total,positive_delta,positive_familydoctors,positive_sabes_employees,positive_total,recovered_total,swabs_delta,swabs_total,tested_total,pressrelease_url
+date,deceased_total,hospitalized_icu,hospitalized_normal,hospitalized_suspicious,isolated_current,isolated_released,isolated_total,positive_delta,positive_familydoctors,positive_sabes_employees,positive_total,recovered_total,swabs_delta,swabs_total,tested_total,pressrelease_url
 2020-03-05,0,,,,,,125,2,,,2,,,60,28,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=635888
 2020-03-06,0,,,,,,,2,,,4,,,,,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=635956
 2020-03-07,0,,,,,,203,27,,,,,173,173,,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=635980
@@ -63,4 +63,4 @@
 2020-05-05,286,7,139,46,1242,8738,9980,1,,,2542,2242,1024,45264,20561,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638557
 2020-05-06,286,7,127,46,1160,8883,10043,,14,233,2543,2291,964,46228,20872,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638617
 2020-05-07,186,7,94,42,1178,8934,10112,9,14,233,2552,2342,863,47091,21284,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638667
-2020-05-08,289,7,105,38,1141,9012,10153,,14,234,2558,2405,817,47908,21572,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638714
+2020-05-08,289,7,105,38,1141,9012,10153,,14,234,2558,2,817,47908,21572,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638714
