@@ -11,7 +11,13 @@ def commit_message(type_of_data):
 repo = Repo()
 
 # pull remote repo
+repo.git.checkout('-f', 'master')
 repo.git.pull('-r')
+
+
+# run scripts
+import scrape_graphics
+import scrape_pressreleases
 
 
 for filename in repo.git.diff(None, name_only=True).split('\n'):
