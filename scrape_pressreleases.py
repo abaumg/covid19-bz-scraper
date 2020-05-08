@@ -197,19 +197,18 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
     df.to_csv(filename, sep=',', mode='a', header=header, index=True)
 
 
-if __name__ == '__main__':
-    try:
-        date, url = get_pressrelease_url()
-    except TypeError:
-        print('No press release for today was found')
-        quit()
+try:
+    date, url = get_pressrelease_url()
+except TypeError:
+    print('No press release for today was found')
+    quit()
 
-    # Checken, ob wir die heutigen Daten schon haben
-    today = datetime.today().date()
-    df = pd.read_csv('data/covid19_bz_detailed.csv')
-    last_row = df.tail(1)
-    last_scraped_date = datetime.strptime(last_row['date'].values[0], '%Y-%m-%d').date()
-    if not last_scraped_date < today:
-        quit()        
+# Checken, ob wir die heutigen Daten schon haben
+today = datetime.today().date()
+df = pd.read_csv('data/covid19_bz_detailed.csv')
+last_row = df.tail(1)
+last_scraped_date = datetime.strptime(last_row['date'].values[0], '%Y-%m-%d').date()
+if not last_scraped_date < today:
+    quit()
 
-    get_numbers_from_pressrelease(url, date)
+get_numbers_from_pressrelease(url, date)
