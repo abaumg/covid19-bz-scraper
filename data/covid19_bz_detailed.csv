@@ -61,8 +61,8 @@ date,deceased_total,hospitalized_icu,hospitalized_normal,hospitalized_suspicious
 2020-05-03,281,7,149,35,1466,8478,9944,1,14,233,2536,2174,436,44240,20166,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638499
 2020-05-04,284,6,145,49,1368,8601,9969,5,14,233,2541,2214,433,44673,20333,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638504
 2020-05-05,286,7,139,46,1242,8738,9980,1,,,2542,2242,1024,45264,20561,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638557
-2020-05-06,286,7,127,46,1160,8883,10043,,14,233,2543,2291,964,46228,20872,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638617
+2020-05-06,286,7,127,46,1160,8883,10043,1,14,233,2543,2291,964,46228,20872,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638617
 2020-05-07,186,7,94,42,1178,8934,10112,9,14,233,2552,2342,863,47091,21284,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638667
-2020-05-08,289,7,105,38,1141,9012,10153,,14,234,2558,2,817,47908,21572,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638714
-2020-05-09,290,6,77,34,1082,9096,10178,9,14,234,2567,2,950,48858,21969,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638773
+2020-05-08,289,7,105,38,1141,9012,10153,6,14,234,2558,2405,817,47908,21572,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638714
+2020-05-09,290,6,77,34,1082,9096,10178,9,14,234,2567,2461,950,48858,21969,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638773
 2020-05-10,290,6,84,19,1048,9185,10233,2,14,235,2569,2487,713,49571,22265,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=638778
