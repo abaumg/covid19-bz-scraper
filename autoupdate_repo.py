@@ -1,3 +1,4 @@
+import subprocess
 from datetime import datetime
 from git import Repo
 
@@ -16,8 +17,8 @@ repo.git.pull('-r')
 
 
 # run scripts
-import scrape_graphics
-import scrape_pressreleases
+subprocess.run(['python', 'scrape_graphics.py'])
+subprocess.run(['python', 'scrape_pressreleases.py'])
 
 
 for filename in repo.git.diff(None, name_only=True).split('\n'):
