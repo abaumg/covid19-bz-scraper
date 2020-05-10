@@ -172,7 +172,6 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             # Unknown field
             value = None
 
-
         if fieldname and key and value:
             try:
                 value = value.replace(',', '')
@@ -180,11 +179,14 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             except AttributeError:
                 pass
 
-            fields.update(
-                {
-                    fieldname: int(value)
-                }
-            )
+            try:
+                fields.update(
+                    {
+                        fieldname: int(value)
+                    }
+                )
+            except ValueError:
+                print('Couldn\'t parse value for field "{}"'.format(fieldname))
 
     fields.update({'pressrelease_url': url})
 
