@@ -19,6 +19,7 @@ repo.git.pull('-r')
 # run scripts
 subprocess.run(['python', 'scrape_graphics.py'])
 subprocess.run(['python', 'scrape_pressreleases.py'])
+subprocess.run(['python', 'process_municipalities_singleday.py'])
 
 
 for filename in repo.git.diff(None, name_only=True).split('\n'):
@@ -30,9 +31,9 @@ for filename in repo.git.diff(None, name_only=True).split('\n'):
         repo.git.add(filename)
         repo.git.commit('-m', commit_message('detailed'))
 
-    elif filename == 'data/covid19_municipalities.csv':
+    elif filename == 'data/covid19_bz_municipalities.csv':
         for untracked_file in repo.untracked_files:
-            if 'municipalities_' in filename:
+            if 'municipalities_' in untracked_file:
                 repo.git.add(untracked_file)
         repo.git.add(filename)
         repo.git.commit('-m', commit_message('municipalities'))
