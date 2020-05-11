@@ -1,4 +1,5 @@
 import subprocess
+import sys
 from datetime import datetime
 from git import Repo
 
@@ -16,10 +17,10 @@ repo.git.checkout('-f', 'master')
 repo.git.pull('-r')
 
 
-# run scripts
-subprocess.run(['python', 'scrape_graphics.py'])
-subprocess.run(['python', 'scrape_pressreleases.py'])
-subprocess.run(['python', 'process_municipalities_singleday.py'])
+# run scripts (sys.executable points to the same interpreter the current script is running, this is important when using venvs)
+subprocess.run([sys.executable, 'scrape_graphics.py'])
+subprocess.run([sys.executable, 'scrape_pressreleases.py'])
+subprocess.run([sys.executable, 'process_municipalities_singleday.py'])
 
 
 for filename in repo.git.diff(None, name_only=True).split('\n'):
