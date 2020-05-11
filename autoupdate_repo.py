@@ -1,3 +1,4 @@
+import pathlib
 import subprocess
 import sys
 from datetime import datetime
@@ -10,7 +11,7 @@ def commit_message(type_of_data):
     )
     return message
 
-repo = Repo()
+repo = Repo(pathlib.Path().absolute())
 
 # pull remote repo
 repo.git.checkout('-f', 'master')
