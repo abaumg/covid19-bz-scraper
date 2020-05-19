@@ -3,6 +3,7 @@ import subprocess
 import sys
 from datetime import datetime
 from git import Repo
+import os
 
 def commit_message(type_of_data):
     message = 'added {type} data for {date}'.format(
@@ -11,7 +12,10 @@ def commit_message(type_of_data):
     )
     return message
 
-repo = Repo(pathlib.Path().absolute())
+workingdir = pathlib.Path(__file__).parent.absolute()
+
+os.chdir(workingdir)
+repo = Repo(workingdir)
 
 # pull remote repo
 repo.git.checkout('-f', 'master')
