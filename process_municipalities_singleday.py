@@ -31,15 +31,6 @@ outdir = r'data/'
 ## filename for csv file containing all dates
 alldatesmunicST_csv = 'covid19_bz_municipalities.csv'
 
-# check if today's data already exists
-today = datetime.today().date()
-df = pd.read_csv(outdir + alldatesmunicST_csv)
-last_row = df.tail(1)
-last_scraped_date = datetime.strptime(last_row['datum'].values[0], '%Y-%m-%d').date()
-if not last_scraped_date < today:
-    quit()
-
-
 # hard coded filename to local file
 #xlsx_file = r'1062210_Positiv27-03-2020.xlsx'
 
@@ -74,6 +65,11 @@ df_totale['datum'] = date
 
 # file name with date format YYYY_mm_dd
 singledatemunicST_csv = 'covid19_bz_municipalities_{date}.csv'.format(date=date.replace('-', '_'))
+
+# avoid duplicaty data and check if file exists already
+if os.path.exists(outdir+singledatemunicST_csv):
+    print("output file already exists", file=sys.stderr)
+    sys.exit(1)
 
 # rename columns
 df_totale.columns = ['ISTAT_code', 'name_IT', 'totals', 'datum']
