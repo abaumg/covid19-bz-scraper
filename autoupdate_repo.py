@@ -25,7 +25,7 @@ repo.git.pull('-r')
 # run scripts (sys.executable points to the same interpreter the current script is running, this is important when using venvs)
 subprocess.run([sys.executable, 'scrape_graphics.py'])
 subprocess.run([sys.executable, 'scrape_pressreleases.py'])
-#subprocess.run([sys.executable, 'process_municipalities_singleday.py'])
+subprocess.run([sys.executable, 'process_municipalities_singleday.py'])
 
 
 for filename in repo.git.diff(None, name_only=True).split('\n'):
