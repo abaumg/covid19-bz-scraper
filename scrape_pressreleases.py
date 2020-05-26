@@ -118,6 +118,8 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             key = key.lower()
             value = value.strip()
             value = value.replace('\xa0', ' ')
+            value = value.replace('.', '')
+            value = re.sub('[\(\[].*?[\)\]]', '', value)
         except ValueError:
             continue
 
@@ -130,7 +132,7 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
         elif 'getesteten personen' in key:
             fieldname = 'tested_total'
             value = value
-        elif 'positiv getestete neue' in key:
+        elif 'positiv getestet' in key and 'neu' in key:
             fieldname = 'positive_delta'
             value = value
         elif 'gesamtzahl' in key and 'infizierte personen' in key:
