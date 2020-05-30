@@ -83,3 +83,9 @@ date,deceased_total,hospitalized_icu,hospitalized_normal,hospitalized_suspicious
 2020-05-25,291,3,35,24,591,10246,10837,0,14,234,2592,2902,502,61075,28189,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=639957
 2020-05-26,291,3,30,32,553,10309,10862,1,14,234,2593,2909,389,61464,28401,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=639997
 2020-05-27,291,3,29,18,511,10351,10862,0,14,234,2593,2923,738,62247,28809,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=640055
+<<<<<<< HEAD
+=======
+2020-05-28,291,3,35,24,509,10386,10895,2,14,234,2595,2944,1042,63289,29251,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=640108
+2020-05-29,291,3,19,19,467,10443,10910,0,14,234,2595,2950,816,64105,29680,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=640146
+2020-05-30,291,2,15,22,436,10486,10922,1,14,234,2596,2973,1300,65405,30308,http://www.provinz.bz.it/news/de/news.asp?news_action=4&news_article_id=640210
+>>>>>>> added detailed data for 2020-05-27, 2020-05-28, 2020-05-29, 2020-05-30
