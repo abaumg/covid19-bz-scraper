@@ -161,14 +161,13 @@ def get_numbers_from_pressrelease(url, date=datetime.today().strftime('%Y-%m-%d'
             value = value
         elif 'geheilte' in key:
             fieldname = 'recovered_total'
-            matches = re.search(r"Insgesamt: +([0-9]{1,})(.*)", value)
-            value = matches.groups()[0]
+            value = value
         elif 'positiv' in key and 'sanitätsbetrieb' in key:
             fieldname = 'positive_sabes_employees'
-            value = value.split(' ')[0]
+            value = value
         elif 'getestete' in key and 'ärzte' in key:
             fieldname = 'positive_familydoctors'
-            value = value.split(' ')[0]
+            value = value
 
         else:
             # Unknown field
