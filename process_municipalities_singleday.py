@@ -40,8 +40,8 @@ if len(sys.argv) > 1:
 else:
     xlsx_file = 'https://afbs.provinz.bz.it/upload/coronavirus/CoronavirusPositivi.xlsx'
 
-# read xls file to dataframe, excluding header lines (2), only read cols A, B, E
-df = pd.read_excel(xlsx_file, header=2, usecols="A,B,E", dtype={'a': int, 'b': str})
+# read xls file to dataframe, excluding header lines (2), only read cols A, C, F
+df = pd.read_excel(xlsx_file, header=2, usecols="A,C,F", dtype={'a': int, 'b': str})
 
 # drop empty rows containing NaN values
 df.dropna(inplace=True)
@@ -56,7 +56,7 @@ df_totale.iloc[:, 0] = df_totale.iloc[:, 0].astype('int32')
 df_totale.iloc[:, 1] = df_totale.iloc[:,1].map(lambda x: x.rstrip(' Totale').upper())
 
 # extract date from xls file
-filedate = df.columns[2].strip('Totali al ')
+filedate = df.columns[2].strip('Gesamt - Totale').strip()
 # convert to datetime object
 date = datetime.strptime(filedate, '%d-%m-%Y').strftime('%Y-%m-%d')
 
@@ -68,7 +68,7 @@ singledatemunicST_csv = 'covid19_bz_municipalities_{date}.csv'.format(date=date.
 
 # avoid duplicaty data and check if file exists already
 if os.path.exists(outdir+singledatemunicST_csv):
-    print("output file already exists", file=sys.stderr)
+    print("output file already exists: " + singledatemunicST_csv, file=sys.stderr)
     sys.exit(1)
 
 # rename columns
